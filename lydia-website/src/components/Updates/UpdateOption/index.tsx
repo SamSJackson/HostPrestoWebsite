@@ -36,7 +36,8 @@ const UpdateOption: React.FC<Props> = ({
             </div>
             <hr className="status-option-divider" />
             <div className="status-option-body">
-                {status.text}
+                <pre>{status.text}</pre>
+                {/* {status.text} */}
             </div>
         </div>
     )
