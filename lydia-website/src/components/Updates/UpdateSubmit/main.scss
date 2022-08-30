@@ -30,6 +30,10 @@
             margin: auto 2px auto 2px;
             border: none;
 
+            @media (min-width: 1400px) {
+                font-size: 1.2vw; 
+            }
+
             @media (max-width: 768px) {
                 font-size: 4.2vw;
             }
@@ -51,6 +55,10 @@
             border-top: none;
             border-right: none;
             border-left: none;
+
+            @media (min-width: 1400px) {
+                font-size: 1.2vw; 
+            }
 
             @media (max-width: 768px) {
                 font-size: 4.2vw;
