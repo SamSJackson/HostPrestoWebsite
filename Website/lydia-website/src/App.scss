@@ -38,7 +38,43 @@ $stars-img: url('static/images/stars.png');
         }
       
         .timezone-container {
-          padding: 90px 0;
+          padding: 120px 0;
+          text-align: center;
+          justify-content: center;
+          
+
+          h2 {
+            margin-bottom: 0px;
+            margin-top: 0px;
+          }
+
+          .london-timezone {
+            background-color: white;
+            background-size: 60%;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 30px 40px rgba(0,0,0,.1);
+
+            h2 {
+              background: -webkit-linear-gradient(bottom, #012169 40%, #eee 20%, #C8102E 30%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
+
+          .vancouver-timezone {
+            background-color: white;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 30px 40px rgba(0,0,0,.1);
+
+            h2 {
+              background: -webkit-linear-gradient(#ec8d8d, #d24545, #bd0c0c);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
         }    
       }
   }

@@ -70,8 +70,14 @@ const App : React.FC = () => {
               <div className="flex-grid">
                 <div className="col">
                   <div className="timezone-container">
-                    <Timezone timeZone={londonTimezone} />
-                    <Timezone timeZone={vancouverTimezone} />
+                    <div className="london-timezone">
+                      <h2>London Timezone</h2>
+                      <Timezone timeZone={londonTimezone} />
+                    </div>
+                    <div className="vancouver-timezone">
+                      <h2>Vancouver Timezone</h2>
+                      <Timezone timeZone={vancouverTimezone} />
+                    </div>
                   </div>
                 </div>
                 <div className="col">

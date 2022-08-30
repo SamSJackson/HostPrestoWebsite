@@ -1,4 +1,3 @@
-import { TextSnippetRounded } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 
 import './main.scss';
@@ -15,7 +14,7 @@ const UpdateSubmit: React.FC<Props> = ({
     const [disabled, setDisabled] = useState(false);
     
     useEffect(() => {
-        if (text != "" && name != "") {
+        if (text !== "" && name !== "") {
             setDisabled(false);
         } else {
             setDisabled(true);
@@ -48,7 +47,7 @@ const UpdateSubmit: React.FC<Props> = ({
                         <input type="text" id="author" name="author" placeholder="Name" onChange={handleNameChange}/>
                     </div>
                     <div>
-                        <textarea id="textarea" className="textarea" contentEditable="true" placeholder="New status" onChange={handleTextChange}/>
+                        <textarea id="textarea" className="textarea" placeholder="New status" onChange={handleTextChange}/>
                     </div>
                 </div>
                 <div className="updates-footer-submit">

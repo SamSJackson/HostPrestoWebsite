@@ -16,7 +16,6 @@ const Timezone : React.FC<Props> = ({
 
     const refreshClock = () => {
         const newTime = new Date();
-
         setTime(newTime.toLocaleTimeString('en-GB', {timeZone}));
     };
 
@@ -29,7 +28,7 @@ const Timezone : React.FC<Props> = ({
 
     return (
         <div className="timezone-container-display">
-            {time}
+            <h3>{time}</h3>
         </div>
     )
 }
