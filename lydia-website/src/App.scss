@@ -4,7 +4,7 @@ $stars-img: url('static/images/stars.png');
 
 .app-container {
   height: 100%;
-  background: hsl(190%, 100%, 40.8%);
+  background: hsl(190deg, 100%, 40.8%);
 
   background-image: $sun-img;
   background-position: 40vw 0vh;
@@ -81,7 +81,7 @@ $stars-img: url('static/images/stars.png');
   
   
   
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     background-size: 45vw;
     background-position: 27vw 0vh;
 

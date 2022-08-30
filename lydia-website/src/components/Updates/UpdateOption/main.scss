@@ -4,12 +4,30 @@
     border: 2px solid rgb(114, 108, 108);
 
     .status-option-header {
-        font-size: 16px;
+        font-size: 1.6vw;
         display: flex;
         justify-content: space-between;
         color: #878b917c;
         text-align: left;
         margin: 0px 20px 0px 20px;
+
+        @media (min-width: 1400px) {
+            font-size: 1.3vw; 
+            .content {
+                &.text {
+                    padding-top: 7px;
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                &.text {
+                    padding-top: 5px;
+                }
+            }
+            font-size: 3.3vw;
+        }
 
         .content { 
             margin-top: 5px;
@@ -29,8 +47,16 @@
     }
     
     .status-option-body {
-        font-size: 12px;
+        font-size: 1.5vw;
         text-align: left;
         margin: auto 20px 5px 20px;
+
+        @media (min-width: 1400px) {
+            font-size: 1.2vw; 
+        }
+
+        @media (max-width: 768px) {
+            font-size: 3vw;
+        }
     }
 }

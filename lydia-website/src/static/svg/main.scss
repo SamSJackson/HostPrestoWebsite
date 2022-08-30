@@ -9,6 +9,13 @@
 
     .delete-icon-svg {
         fill: #878b917c;
+        width: 2vw;
+        height: 1.6vw;
+
+        @media (max-width: 768px) {
+            width: 4.5vw;
+            height: 4.3vw;
+        }
 
         &:hover {
             fill: black;

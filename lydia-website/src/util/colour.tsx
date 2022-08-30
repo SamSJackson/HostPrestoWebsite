@@ -11,5 +11,5 @@ export function getRgb(rgb : string) : [number, number, number] {
 };
 
 export function hslFormat(h : number, s : number, l : number) {
-    return `hsl(${h}, ${s}%, ${l}%)`;
+    return `hsl(${h}deg, ${s}%, ${l}%)`;
 }

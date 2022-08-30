@@ -24,10 +24,10 @@ const UpdateOption: React.FC<Props> = ({
     return (
         <div className="status-option">
             <div className="status-option-header">
-                <div className="content">
+                <div className="content text">
                     {status.author}
                 </div>
-                <div className="content">
+                <div className="content text">
                     {createdAt}
                 </div>
                 <div className="content">

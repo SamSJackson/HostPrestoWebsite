@@ -23,11 +23,16 @@
             text-align: left;
             width: 95%;
             resize: none;
+            font-size: 1.5vw;
             min-height: 50px;
             background-color: inherit;
             height: auto;
             margin: auto 2px auto 2px;
             border: none;
+
+            @media (max-width: 768px) {
+                font-size: 4.2vw;
+            }
         }
 
         .textarea:focus {
@@ -38,6 +43,7 @@
         input {
             float: left;
             margin-left: 1px;
+            font-size: 1.5vw;
             width: 98%;
             background-color: inherit;
             border-top-left-radius: 2px;
@@ -45,6 +51,10 @@
             border-top: none;
             border-right: none;
             border-left: none;
+
+            @media (max-width: 768px) {
+                font-size: 4.2vw;
+            }
         }
         input:focus{
             outline: none !important;
