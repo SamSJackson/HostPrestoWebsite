@@ -1,0 +1,30 @@
+.updates-container {
+    position: relative;
+    margin: auto;
+    height: 90%;
+    width: 80%;
+    background-color: #d5dfd7;
+    border: 2px solid #82817D;
+    border-radius: 10px;
+
+    .updates-container-statuses {
+        max-height: 70%;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            border-radius: 3px;
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgb(196, 192, 192);
+            border-radius: 5px;
+            border: 1px solid rgb(99, 97, 97);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 6px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+    }
+}

@@ -1,0 +1,52 @@
+.updates-footer {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+
+    .updates-footer-flex {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        
+        .textarea { 
+            text-align: left;
+            width: 95%;
+            resize: none;
+            min-height: 50px;
+            height: auto;
+            background-color: inherit;
+            margin: auto 2px auto 2px;
+            border: none;
+        }
+
+        .textarea:focus {
+            outline: none;
+        }
+        
+        [contentEditable=true]:empty:not(:focus):before{
+            content:attr(data-ph);
+            color:grey;
+        }
+
+        input {
+            float: left;
+            width: 95%;
+            background-color: #d5dfd7;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+        }
+        input:focus{
+            outline: none !important;
+        }
+    }
+
+    .updates-footer-submit {
+        display: flex;
+        justify-content: flex-end;
+        margin: auto 6px 6px auto;
+        position: relative;
+    }
+}

@@ -1,0 +1,69 @@
+$sand-img: url('static/images/sand.png');
+$sun-img: url('static/images/sun.png');
+$stars-img: url('static/images/stars.png');
+
+.app-container {
+  height: 100%;
+  background: hsl(190%, 100%, 40.8%);
+
+  background-image: $sun-img;
+  background-position: 40vw 0vh;
+  background-size: 20vw;
+  background-repeat: no-repeat;
+
+  .star-container {
+    background-image: $stars-img;
+    background-position: cover;
+    background-repeat: no-repeat;
+    background-position-y: 700px;
+    height: 100%; 
+
+      .background-container {
+        height: 100%;
+        background-image: $sand-img;
+        background-position: bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
+    
+        .flex-grid {
+          height: 100%;
+          display: flex;
+          
+          .col {
+            height: 60%;
+            flex: 1;
+            margin: auto;
+          }
+          
+        }
+      
+        .timezone-container {
+          padding: 90px 0;
+        }    
+      }
+  }
+  
+  
+  
+  @media (max-width: 600px) {
+    background-size: 45vw;
+    background-position: 27vw 0vh;
+
+    .star-container {
+      .background-container {
+        background-position: bottom;
+        background-size: contain;
+        
+        .flex-grid {
+          display: block;
+    
+          .col {
+            height: 50%;
+            flex: 1;
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+}
