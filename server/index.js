@@ -6,14 +6,25 @@ const mysql = require('mysql2');
 
 const db = mysql.createPool({
     host: "localhost",
-    user: "root",
-    password: "password",
+    user: "root", // statusdb
+    password: "password", // nD70wY928xFW
     database: 'statusdb',
+})
+
+const con = mysql.createConnection({
+    host: "localhost",
+    user: "root", // statusdb
+    password: "password", // nD70wY928xFW
 })
 
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
 app.use(express.json());
+
+app.get('/', (request, response) => {
+    console.log("Successfully called");
+    response.send("Nice job");
+});
 
 app.get('/api/statuses', (request, response) => {
     const sqlQuery = "SELECT * FROM basic_status ORDER BY createdAt DESC";
@@ -66,4 +77,8 @@ app.post('/api/statuses/delete', (request, response) => {
 
 app.listen(3001, () => {
     console.log("Running on port 3001");
+    con.connect((error) => {
+        if (error) throw error;
+        console.log("Connected");
+    });
 })
