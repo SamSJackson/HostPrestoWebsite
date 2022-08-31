@@ -20,8 +20,9 @@ const App : React.FC = () => {
   const starsNode = document.getElementById('stars');
   const vhPixel = window.innerHeight / 100;
   let lightness = 40.8;
+  window.addEventListener("wheel", handleScrollChange);
 
-  const handleScrollChange = (event : React.WheelEvent<HTMLDivElement>) => {
+  function handleScrollChange (event : WheelEvent) {
     const target = event.target as HTMLDivElement;
     if (document.getElementById("update-container-primary")?.contains(target)) { return; }
     
@@ -43,6 +44,10 @@ const App : React.FC = () => {
     appNode.style.backgroundColor = hslFormat(190, 100, lightness);
   };
 
+  function mouseListener(event : WheelEvent) { 
+    console.log(event.target as HTMLDivElement);
+  }
+  
   useEffect(() => {
     const statusesPromise = getStatuses();
     statusesPromise.then((statusArray) => {
@@ -67,7 +72,7 @@ const App : React.FC = () => {
   return (
     <TimeContext.Provider value={tzid} >
       <StatusContext.Provider value={status}>
-        <div id="app-container-primary" className="app-container" onWheel={event => handleScrollChange(event)}>
+        <div id="app-container-primary" className="app-container">
           <div id="stars" className="star-container">
             <div className="background-container">
               <div className="flex-grid">
