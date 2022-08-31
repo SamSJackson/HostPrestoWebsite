@@ -7,7 +7,7 @@ import { Status } from '../constants/Status';
 const ct = require('countries-and-timezones');
 
 // const BASE_URL = "http://localhost:8080/api";
-const BASE_URL = "https://lydiabroadley.com:8080/api";
+const BASE_URL = "https://lydiabroadley.com:3001/api";
 
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
@@ -35,12 +35,14 @@ export async function getStatuses() : Promise<Status[]> {
               };
             statusArray.push(transformedStatus);
         };
+    }).catch((error) => {
+        console.log(`Error: ${error}`);
     });
     return new Promise((resolve, reject) => {
         resolve(statusArray);
         reject([]);
     });
-}
+};
 
 export async function addStatus(text : string, author : string) : Promise<Status> {
     const DEFAULT_STATUS = {} as Status;
@@ -58,7 +60,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
         DEFAULT_STATUS.createdAt = new Date(response.data.createdAt);
         DEFAULT_STATUS.createdWhere = response.data.createdWhere;
     }).catch((error) => {
-        console.log(error);
+        console.log(`Error: ${error}`);
     });
     return new Promise((resolve, reject) => {
         resolve(DEFAULT_STATUS);
@@ -71,8 +73,7 @@ export async function deleteStatus(statusId: number) {
     await axios.post(url, {
         statusId
     }).then((response) => {
-        console.log("Success");
     }).catch((error) => {
-        console.log(error);
+        console.log(`Error: ${error}`);
     });
 }
