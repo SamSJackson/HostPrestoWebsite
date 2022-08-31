@@ -9,7 +9,6 @@ import StatusContext from './contexts/StatusContext';
 import TimeContext from './contexts/TimeContex';
 
 import './App.scss';
-import { ContactSupportOutlined } from '@mui/icons-material';
 
 const londonTimezone = 'Europe/London';
 const vancouverTimezone = 'America/Vancouver';
@@ -20,15 +19,14 @@ const App : React.FC = () => {
   const appNode = document.getElementById("app-container-primary");
   const starsNode = document.getElementById('stars');
   const vhPixel = window.innerHeight / 100;
-  let default_height = window.scrollY;
   let lightness = 40.8;
 
-  const handleScrollChange = (event : React.UIEvent<HTMLDivElement>) => {
-    console.log("Scrolled");
+  const handleScrollChange = (event : React.WheelEvent<HTMLDivElement>) => {
+    console.log("Wheel event");
     const target = event.target as HTMLDivElement;
     if (document.getElementById("update-container-primary")?.contains(target)) { return; }
     
-    const scrollDifference = window.scrollY - default_height;
+    const scrollDifference = event.deltaY;
     if (Math.abs(scrollDifference) < 5 || appNode == null || starsNode == null) return;
     const currentPosition = parseInt(window.getComputedStyle(appNode).backgroundPositionY);
     const starsPosition = parseInt(window.getComputedStyle(starsNode).backgroundPositionY);
@@ -70,7 +68,7 @@ const App : React.FC = () => {
   return (
     <TimeContext.Provider value={tzid} >
       <StatusContext.Provider value={status}>
-        <div id="app-container-primary" className="app-container" onScroll={event => handleScrollChange(event)}>
+        <div id="app-container-primary" className="app-container" onWheel={event => handleScrollChange(event)}>
           <div id="stars" className="star-container">
             <div className="background-container">
               <div className="flex-grid">
