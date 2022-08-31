@@ -7,10 +7,20 @@ import { Status } from '../constants/Status';
 const ct = require('countries-and-timezones');
 
 const BASE_URL = "http://localhost:3001/api";
+// const BASE_URL = "http://193.105.61.6/phpmyadmin:3001/api";
 
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
 
+
+export async function testAPI() {
+    const url = BASE_URL + "/";
+    await axios.post(url).then((response) => {
+        console.log(response);
+    }).catch((error) => {
+        console.log(error);
+    });
+}
 
 export async function addStatus(text : string, author : string) : Promise<Status> {
     const DEFAULT_STATUS = {} as Status;
