@@ -7,8 +7,8 @@ const https = require('https');
 const fs = require('fs');
 
 // Use fs and generate SSL certificates to get these values
-const key = fs.readFileSync('/certs/server.key');
-const cert = fs.readFileSync('/certs/server.cert');
+const key = fs.readFileSync(__dirname + '/server/certs/server.key');
+const cert = fs.readFileSync(__dirname + '/server/certs/server.cert');
 
 const PORT = 3001;
 const options = {
