@@ -7,11 +7,10 @@ const https = require('https');
 const fs = require('fs');
 
 
-const BASE_DIR = "/home/web/www/lydiabroadley.com"
+const BASE_DIR = "/var/www/lydiabroadley.com"
 // Use fs and generate SSL certificates to get these values
-console.log(process.pwd());
 const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
-const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.cert');
+const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
 
 const PORT = 3001;
 const options = {
