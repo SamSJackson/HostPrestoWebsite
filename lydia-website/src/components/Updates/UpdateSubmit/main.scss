@@ -34,8 +34,12 @@
                 font-size: 1.2vw; 
             }
 
+            @media (min-width: 1500px) {
+                font-size: 1vw;
+            }
+
             @media (max-width: 768px) {
-                font-size: 4.2vw;
+                font-size: 3vw;
             }
         }
 
@@ -60,8 +64,12 @@
                 font-size: 1.2vw; 
             }
 
+            @media (min-width: 1500px) {
+                font-size: 1vw; 
+            }
+
             @media (max-width: 768px) {
-                font-size: 4.2vw;
+                font-size: 3vw;
             }
         }
         input:focus{

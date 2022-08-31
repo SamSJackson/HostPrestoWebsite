@@ -50,6 +50,7 @@ const App : React.FC = () => {
     });
   }, []);
 
+
   const handleAddStatus = (newStatus: Status) => {
     if (status.indexOf(newStatus) > -1) {
       return;
