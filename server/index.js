@@ -4,17 +4,19 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
 
+const PORT = 8080;
+
 const db = mysql.createPool({
     host: "localhost",
-    user: "root", // statusdb
-    password: "password", // nD70wY928xFW
+    user: "statusdb", // statusdb
+    password: "nD70wY928xFW", // nD70wY928xFW
     database: 'statusdb',
 })
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "root", // statusdb
-    password: "password", // nD70wY928xFW
+    user: "statusdb", // statusdb
+    password: "nD70wY928xFW", // nD70wY928xFW
 })
 
 app.use(cors());
@@ -28,13 +30,14 @@ app.get('/api/', (request, response) => {
 
 app.get('/api/statuses', (request, response) => {
     const sqlQuery = "SELECT * FROM basic_status ORDER BY createdAt DESC";
+    console.log("Getting statuses");
     db.query(sqlQuery, (error, result) => {
         if (error) {
             response.send(`error => ${error}`);
         }
         response.send(result);
     })
-})
+});
 
 app.post('/api/statuses/add', (request, response) => {
     const _id = request.body.id;
@@ -50,6 +53,7 @@ app.post('/api/statuses/add', (request, response) => {
         createdWhere,
     };
 
+    console.log("Adding status");
     const sqlQuery = "INSERT INTO basic_status (id, text, author, createdAt, createdWhere) VALUES (?, ?, ?, ?, ?)";
     db.query(sqlQuery, [_id, text, author, createdAt, createdWhere], (error, result) => {
         if (error) {
@@ -64,6 +68,7 @@ app.post('/api/statuses/add', (request, response) => {
 app.post('/api/statuses/delete', (request, response) => {
     const _id = request.body.statusId;
 
+    console.log("Deleting status");
     const sqlQuery = "DELETE FROM basic_status WHERE id = (?)";
     db.query(sqlQuery, [_id], (error, result) => {
         if (error) {
@@ -75,8 +80,8 @@ app.post('/api/statuses/delete', (request, response) => {
 })
 
 
-app.listen(3001, () => {
-    console.log("Running on port 3001");
+app.listen(PORT, () => {
+    console.log("Running on port", PORT);
     con.connect((error) => {
         if (error) throw error;
         console.log("Connected");

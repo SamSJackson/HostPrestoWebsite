@@ -44,11 +44,12 @@ const App : React.FC = () => {
   };
 
   useEffect(() => {
-    testAPI();
-    // const statusesPromise = getStatuses();
-    // statusesPromise.then((statusArray) => {
-    //   setStatus([...statusArray]);
-    // });
+    const statusesPromise = getStatuses();
+    statusesPromise.then((statusArray) => {
+      setStatus([...statusArray]);
+    }).catch((error) => {
+      console.log(error);
+    });
   }, []);
 
 

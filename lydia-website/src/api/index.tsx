@@ -6,19 +6,39 @@ import { Status } from '../constants/Status';
 
 const ct = require('countries-and-timezones');
 
-const BASE_URL = "http://localhost:3001/api";
-// const BASE_URL = "http://193.105.61.6/phpmyadmin:3001/api";
+// const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "https://lydiabroadley.com:8080/api";
 
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
 
-
 export async function testAPI() {
     const url = BASE_URL + "/";
-    await axios.post(url).then((response) => {
+    await axios.get(url).then((response) => {
         console.log(response);
     }).catch((error) => {
         console.log(error);
+    });
+};
+
+export async function getStatuses() : Promise<Status[]> {
+    const url = BASE_URL + '/statuses';
+    const statusArray : Status[] = [];
+    await axios.get(url).then((response) => {
+        for (var i = 0; i < response.data.length; i++) {
+            const transformedStatus: Status = {
+                _id: response.data[i].id,
+                text: response.data[i].text,
+                author: response.data[i].author,
+                createdAt: changeDateTimezone(response.data[i].createdAt, tzid),
+                createdWhere: response.data[i].createdWhere,
+              };
+            statusArray.push(transformedStatus);
+        };
+    });
+    return new Promise((resolve, reject) => {
+        resolve(statusArray);
+        reject([]);
     });
 }
 
@@ -43,27 +63,6 @@ export async function addStatus(text : string, author : string) : Promise<Status
     return new Promise((resolve, reject) => {
         resolve(DEFAULT_STATUS);
         reject(DEFAULT_STATUS);
-    });
-}
-
-export async function getStatuses() : Promise<Status[]> {
-    const url = BASE_URL + '/statuses';
-    const statusArray : Status[] = [];
-    await axios.get(url).then((response) => {
-        for (var i = 0; i < response.data.length; i++) {
-            const transformedStatus: Status = {
-                _id: response.data[i].id,
-                text: response.data[i].text,
-                author: response.data[i].author,
-                createdAt: changeDateTimezone(response.data[i].createdAt, tzid),
-                createdWhere: response.data[i].createdWhere,
-              };
-            statusArray.push(transformedStatus);
-        };
-    });
-    return new Promise((resolve, reject) => {
-        resolve(statusArray);
-        reject([]);
     });
 }
 
