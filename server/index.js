@@ -6,9 +6,11 @@ const mysql = require('mysql2');
 const https = require('https');
 const fs = require('fs');
 
+
+const BASE_DIR = "/home/web/www/lydiabroadley.com"
 // Use fs and generate SSL certificates to get these values
-const key = fs.readFileSync(__dirname + '/server/certs/server.key');
-const cert = fs.readFileSync(__dirname + '/server/certs/server.cert');
+const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
+const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.cert');
 
 const PORT = 3001;
 const options = {
