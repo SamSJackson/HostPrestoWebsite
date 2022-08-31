@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const BASE_DIR = "/home/web/www/lydiabroadley.com"
 // Use fs and generate SSL certificates to get these values
+console.log(process.pwd());
 const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
 const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.cert');
 
