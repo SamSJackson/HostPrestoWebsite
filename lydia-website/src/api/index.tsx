@@ -45,7 +45,13 @@ export async function getStatuses() : Promise<Status[]> {
 };
 
 export async function addStatus(text : string, author : string) : Promise<Status> {
-    const DEFAULT_STATUS = {} as Status;
+    const DEFAULT_STATUS = {
+        _id: generateID(),
+        text: "",
+        author: "",
+        createdAt: new Date(),
+        createdWhere: "",
+    } as Status;
     const url = BASE_URL + "/statuses/add";
     await axios.post(url, {
         id: generateID(),
