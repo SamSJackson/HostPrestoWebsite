@@ -3,8 +3,18 @@ const parser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
+const https = require('https');
+const fs = require('fs');
+
+// Use fs and generate SSL certificates to get these values
+const key = fs.readFileSync('/certs/server.key');
+const cert = fs.readFileSync('/certs/server.cert');
 
 const PORT = 3001;
+const options = {
+    key: key,
+    cert: cert
+};
 
 const db = mysql.createPool({
     host: "localhost",
@@ -13,11 +23,11 @@ const db = mysql.createPool({
     database: 'statusdb',
 })
 
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "statusdb", // statusdb
-    password: "nD70wY928xFW", // nD70wY928xFW
-})
+// const con = mysql.createConnection({
+//     host: "localhost",
+//     user: "statusdb", // statusdb
+//     password: "nD70wY928xFW", // nD70wY928xFW
+// })
 
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
@@ -80,10 +90,12 @@ app.post('/api/statuses/delete', (request, response) => {
 })
 
 
-app.listen(PORT, () => {
+const server = https.createServer(options, app);
+
+server.listen(PORT, () => {
     console.log("Running on port", PORT);
-    con.connect((error) => {
-        if (error) throw error;
-        console.log("Connected");
-    });
+    // con.connect((error) => {
+    //     if (error) throw error;
+    //     console.log("Connected");
+    // });
 })

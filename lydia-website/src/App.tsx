@@ -22,7 +22,6 @@ const App : React.FC = () => {
   let lightness = 40.8;
 
   const handleScrollChange = (event : React.WheelEvent<HTMLDivElement>) => {
-    console.log("Wheel event");
     const target = event.target as HTMLDivElement;
     if (document.getElementById("update-container-primary")?.contains(target)) { return; }
     
