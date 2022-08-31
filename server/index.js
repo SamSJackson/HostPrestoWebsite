@@ -21,7 +21,7 @@ app.use(cors());
 app.use(parser.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get('/', (request, response) => {
+app.get('/api/', (request, response) => {
     console.log("Successfully called");
     response.send("Nice job");
 });
