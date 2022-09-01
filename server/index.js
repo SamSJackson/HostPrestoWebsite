@@ -94,7 +94,7 @@ app.post('/api/statuses/delete', (request, response) => {
 
 const server = https.createServer(options, app);
 
-server.listen("/api", () => {
+server.listen("https://193.105.61.6/api/", () => {
     console.log("Running on port", PORT);
     con.connect((error) => {
         if (error) throw error;
