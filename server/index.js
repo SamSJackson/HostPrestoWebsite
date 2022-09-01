@@ -12,11 +12,11 @@ const BASE_DIR = "/var/www/lydiabroadley.com"
 const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
 const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
 
-const PORT = 3001;
-const options = {
-    key: key,
-    cert: cert
-};
+const PORT = 443;
+// const options = {
+//     key: key,
+//     cert: cert
+// };
 
 const db = mysql.createPool({
     host: "localhost",
@@ -25,11 +25,11 @@ const db = mysql.createPool({
     database: 'statusdb',
 })
 
-// const con = mysql.createConnection({
-//     host: "localhost",
-//     user: "statusdb", // statusdb
-//     password: "nD70wY928xFW", // nD70wY928xFW
-// })
+const con = mysql.createConnection({
+    host: "localhost",
+    user: "statusdb", // statusdb
+    password: "nD70wY928xFW", // nD70wY928xFW
+})
 
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
@@ -101,3 +101,7 @@ server.listen(PORT, () => {
     //     console.log("Connected");
     // });
 })
+
+// app.listen(PORT, () => {
+//     console.log("Running on port", PORT);
+// })
