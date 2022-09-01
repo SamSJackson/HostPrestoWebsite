@@ -6,15 +6,11 @@ import { Status } from '../constants/Status';
 
 const ct = require('countries-and-timezones');
 
-const BASE_URL = "http://localhost:3001/api";
-// const BASE_URL = "http://193.105.61.6/phpmyadmin:3001/api";
-
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
 
-
 export async function testAPI() {
-    const url = BASE_URL + "/";
+    const url = "/";
     await axios.post(url).then((response) => {
         console.log(response);
     }).catch((error) => {
@@ -23,8 +19,14 @@ export async function testAPI() {
 }
 
 export async function addStatus(text : string, author : string) : Promise<Status> {
-    const DEFAULT_STATUS = {} as Status;
-    const url = BASE_URL + "/statuses/add";
+    const DEFAULT_STATUS : Status = {
+        _id: generateID(),
+        text: "",
+        author: "",
+        createdAt: new Date(),
+        createdWhere: ""
+    };
+    const url = "/statuses/add";
     await axios.post(url, {
         id: generateID(),
         text: text,
@@ -47,7 +49,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
 }
 
 export async function getStatuses() : Promise<Status[]> {
-    const url = BASE_URL + '/statuses';
+    const url = '/statuses';
     const statusArray : Status[] = [];
     await axios.get(url).then((response) => {
         for (var i = 0; i < response.data.length; i++) {
@@ -60,7 +62,7 @@ export async function getStatuses() : Promise<Status[]> {
               };
             statusArray.push(transformedStatus);
         };
-    });
+    }).catch((error) => { console.log(error); });
     return new Promise((resolve, reject) => {
         resolve(statusArray);
         reject([]);
@@ -68,7 +70,7 @@ export async function getStatuses() : Promise<Status[]> {
 }
 
 export async function deleteStatus(statusId: number) {
-    const url = BASE_URL + '/statuses/delete';
+    const url = '/statuses/delete';
     await axios.post(url, {
         statusId
     }).then((response) => {
