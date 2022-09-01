@@ -56,11 +56,9 @@
     }
     
     .status-option-body {
-        pre {
-            margin: 0px;
-            font-family: inherit;
-        }
-        white-space: pre;
+        margin: 0px;
+        font-family: inherit;
+        white-space: pre-wrap;
         font-size: 1.5vw;
         text-align: left;
         margin: auto 20px 5px 20px;
