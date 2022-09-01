@@ -12,7 +12,7 @@ const BASE_DIR = "/var/www/lydiabroadley.com"
 const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
 const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
 
-const PORT = 3002;
+const PORT = 3001;
 const options = {
     key: key,
     cert: cert
@@ -42,7 +42,6 @@ app.get('/api/', (request, response) => {
 
 app.get('/api/statuses', (request, response) => {
     const sqlQuery = "SELECT * FROM basic_status ORDER BY createdAt DESC";
-    console.log("Getting statuses");
     db.query(sqlQuery, (error, result) => {
         if (error) {
             response.send(`error => ${error}`);
@@ -65,7 +64,6 @@ app.post('/api/statuses/add', (request, response) => {
         createdWhere,
     };
 
-    console.log("Adding status");
     const sqlQuery = "INSERT INTO basic_status (id, text, author, createdAt, createdWhere) VALUES (?, ?, ?, ?, ?)";
     db.query(sqlQuery, [_id, text, author, createdAt, createdWhere], (error, result) => {
         if (error) {
@@ -79,8 +77,6 @@ app.post('/api/statuses/add', (request, response) => {
 
 app.post('/api/statuses/delete', (request, response) => {
     const _id = request.body.statusId;
-
-    console.log("Deleting status");
     const sqlQuery = "DELETE FROM basic_status WHERE id = (?)";
     db.query(sqlQuery, [_id], (error, result) => {
         if (error) {
@@ -94,7 +90,8 @@ app.post('/api/statuses/delete', (request, response) => {
 
 const server = https.createServer(options, app);
 
-server.listen(() => {
+server.listen(PORT, () => {
+    console.log("Listening on port:", PORT);
     con.connect((error) => {
         if (error) throw error;
         console.log("Connected");
