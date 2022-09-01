@@ -50,7 +50,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
         id: generateID(),
         text: text,
         author: author, 
-        createdAt: parseDateToISO(tzid),
+        createdAt: (new Date()).toISOString(),
         country: country,
     }).then((response) => {
         console.log(response);
