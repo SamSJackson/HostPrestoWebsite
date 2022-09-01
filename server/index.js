@@ -12,7 +12,7 @@ const path = require('path');
 // const key = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/privkey.pem");
 // const cert = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/fullchain.pem");
 
-const PORT = 3001;
+const PORT = 3000;
 // const options = {
 //     key: key,
 //     cert: cert
@@ -88,9 +88,6 @@ app.post('/api/statuses/delete', (request, response) => {
     response.send("Success");
 })
 
-// app.listen(PORT, () => {
-//     con.connect((error) => {
-//         if (error) throw error;
-//         console.log("Connected");
-//     });
-// })
+app.listen(3000, () => {
+    console.log("Listening on port", PORT)
+});
