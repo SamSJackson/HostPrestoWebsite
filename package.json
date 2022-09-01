@@ -9,7 +9,8 @@
     "client": "npm run start --prefix lydia-website",
     "client-production": "cd lydia-website && serve -s build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "production": "concurrently \"npm run server\" \"npm run client-production\""
+    "production": "concurrently \"npm run server\" \"npm run client-production\"",
+    "production-server": "node server/index.js"
   },
   "repository": {
     "type": "git",
