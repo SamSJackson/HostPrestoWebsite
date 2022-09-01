@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { generateID } from '../util/guid';
-import { changeDateTimezone, convertDateToUTC, parseDateToISO } from '../util/time';
 import { Status } from '../constants/Status';
 
 const ct = require('countries-and-timezones');
@@ -15,7 +14,6 @@ export async function getStatuses() : Promise<Status[]> {
     const url = BASE_URL + '/statuses';
     const statusArray : Status[] = [];
     await axios.get("/api/statuses").then((response) => {
-        console.log(response);
         for (var i = 0; i < response.data.length; i++) {
             const transformedStatus: Status = {
                 _id: response.data[i].id,
@@ -24,8 +22,6 @@ export async function getStatuses() : Promise<Status[]> {
                 createdAt: new Date(response.data[i].createdAt),
                 createdWhere: response.data[i].createdWhere,
               };
-              console.log(`Response received: ${response.data[i].createdAt}`);
-              console.log(`Transformed: ${transformedStatus.createdAt}`);
             statusArray.push(transformedStatus);
         };
     }).catch((error) => {

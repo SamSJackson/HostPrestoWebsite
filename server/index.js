@@ -25,8 +25,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../lydia-website/build')));
 
 app.get('/api/', (request, response) => {
-    console.log("Successfully called");
-    response.send("Nice job");
+    response.send("Nice job finding this!");
 });
 
 app.get('/api/statuses', (request, response) => {
@@ -35,7 +34,6 @@ app.get('/api/statuses', (request, response) => {
         if (error) {
             response.send(`error => ${error}`);
         }
-        console.log(result);
         response.send(result);
     })
 });
@@ -61,7 +59,6 @@ app.post('/api/statuses/add', (request, response) => {
             response.send({_id:0, text: "", author: "", createdAt: new Date(), createdWhere: ""});
             return;
         }
-        console.log(newStatus);
         response.send(newStatus);
     })
 })
