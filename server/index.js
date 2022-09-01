@@ -12,11 +12,11 @@ const BASE_DIR = "/var/www/lydiabroadley.com"
 const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
 const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
 
-const PORT = 443;
-// const options = {
-//     key: key,
-//     cert: cert
-// };
+const PORT = 3002;
+const options = {
+    key: key,
+    cert: cert
+};
 
 const db = mysql.createPool({
     host: "localhost",
@@ -96,12 +96,9 @@ const server = https.createServer(options, app);
 
 server.listen(PORT, () => {
     console.log("Running on port", PORT);
-    // con.connect((error) => {
-    //     if (error) throw error;
-    //     console.log("Connected");
-    // });
+    con.connect((error) => {
+        if (error) throw error;
+        console.log("Connected");
+    });
 })
 
-// app.listen(PORT, () => {
-//     console.log("Running on port", PORT);
-// })
