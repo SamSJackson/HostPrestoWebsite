@@ -7,19 +7,17 @@ import { Status } from '../constants/Status';
 const ct = require('countries-and-timezones');
 
 // const BASE_URL = "http://localhost:8080/api";
-const BASE_URL = "https://lydiabroadley.com:443/api";
+const BASE_URL = "https://lydiabroadley.com/api";
 
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
 
 export async function testAPI() {
     const url = BASE_URL + "/";
-    await axios.get(url).then((response) => {
-        console.log(response);
-    }).catch((error) => {
-        console.log(error);
-    });
+    fetch("/").then((response) => response.json())
+    .then((data) => console.log(data));
 };
+
 
 export async function getStatuses() : Promise<Status[]> {
     const url = BASE_URL + '/statuses';
@@ -54,7 +52,6 @@ export async function addStatus(text : string, author : string) : Promise<Status
         createdWhere: "",
     } as Status;
     const url = BASE_URL + "/statuses/add";
-    console.log("Adding status");
     await axios.post(url, {
         id: generateID(),
         text: text,
