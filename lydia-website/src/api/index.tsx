@@ -24,8 +24,7 @@ export async function testAPI() {
 export async function getStatuses() : Promise<Status[]> {
     const url = BASE_URL + '/statuses';
     const statusArray : Status[] = [];
-    console.log("Getting status");
-    await axios.get(url).then((response) => {
+    await axios.get("/api/statuses").then((response) => {
         console.log(response);
         for (var i = 0; i < response.data.length; i++) {
             const transformedStatus: Status = {

@@ -9,14 +9,14 @@ const fs = require('fs');
 
 const BASE_DIR = "/var/www/lydiabroadley.com"
 // Use fs and generate SSL certificates to get these values
-const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
-const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
+// const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
+// const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
 
 const PORT = 3001;
-const options = {
-    key: key,
-    cert: cert
-};
+// const options = {
+//     key: key,
+//     cert: cert
+// };
 
 const db = mysql.createPool({
     host: "localhost",
@@ -88,7 +88,7 @@ app.post('/api/statuses/delete', (request, response) => {
 })
 
 
-const server = https.createServer(options, app);
+const server = https.createServer(app);
 
 server.listen(PORT, () => {
     console.log("Listening on port:", PORT);
