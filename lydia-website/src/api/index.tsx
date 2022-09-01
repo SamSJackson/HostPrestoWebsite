@@ -24,6 +24,7 @@ export async function testAPI() {
 export async function getStatuses() : Promise<Status[]> {
     const url = BASE_URL + '/statuses';
     const statusArray : Status[] = [];
+    console.log("Getting status");
     await axios.get(url).then((response) => {
         for (var i = 0; i < response.data.length; i++) {
             const transformedStatus: Status = {
@@ -53,6 +54,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
         createdWhere: "",
     } as Status;
     const url = BASE_URL + "/statuses/add";
+    console.log("Adding status");
     await axios.post(url, {
         id: generateID(),
         text: text,
