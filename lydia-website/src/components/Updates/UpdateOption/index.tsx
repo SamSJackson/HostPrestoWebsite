@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Status } from '../../../constants/Status';
+import TimeContext from '../../../contexts/TimeContex';
 import DeleteIcon from '../../../static/svg/DeleteIcon';
 import { formatTime } from '../../../util/time';
 
@@ -15,7 +16,8 @@ const UpdateOption: React.FC<Props> = ({
     status,
     onDelete,
 }) => {
-    const createdAt = formatTime(status.createdAt);
+    const tzid = useContext(TimeContext);
+    const createdAt = formatTime(status.createdAt, tzid);
 
     const handleDelete = async () => {
         await onDelete(status._id);
