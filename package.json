@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/SamSJackson/HostPrestoWebsite/issues"
   },
-  "homepage": "https://lydiabroadley.com:443",
+  "homepage": "https://lydiabroadley.com",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",

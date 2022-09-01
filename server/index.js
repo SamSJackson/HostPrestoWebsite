@@ -5,18 +5,19 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const https = require('https');
 const fs = require('fs');
+const path = require('path');
 
 
 const BASE_DIR = "/var/www/lydiabroadley.com"
 // Use fs and generate SSL certificates to get these values
-// const key = fs.readFileSync(BASE_DIR + '/server/certs/server.key');
-// const cert = fs.readFileSync(BASE_DIR + '/server/certs/server.crt');
+const key = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/privkey.pem");
+const cert = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/fullchain.pem");
 
 const PORT = 3001;
-// const options = {
-//     key: key,
-//     cert: cert
-// };
+const options = {
+    key: key,
+    cert: cert
+};
 
 const db = mysql.createPool({
     host: "localhost",
@@ -34,6 +35,7 @@ const con = mysql.createConnection({
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../lydia-website/build')));
 
 app.get('/api/', (request, response) => {
     console.log("Successfully called");
