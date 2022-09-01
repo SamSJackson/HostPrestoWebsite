@@ -16,8 +16,7 @@ const UpdateOption: React.FC<Props> = ({
     status,
     onDelete,
 }) => {
-    const tzid = useContext(TimeContext);
-    const createdAt = formatTime(status.createdAt, tzid);
+    const createdAt = formatTime(status.createdAt);
 
     const handleDelete = async () => {
         await onDelete(status._id);
@@ -39,7 +38,6 @@ const UpdateOption: React.FC<Props> = ({
             <hr className="status-option-divider" />
             <div className="status-option-body">
                 <pre>{status.text}</pre>
-                {/* {status.text} */}
             </div>
         </div>
     )

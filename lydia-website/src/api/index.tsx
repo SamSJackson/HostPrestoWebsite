@@ -21,7 +21,7 @@ export async function getStatuses() : Promise<Status[]> {
                 _id: response.data[i].id,
                 text: response.data[i].text,
                 author: response.data[i].author,
-                createdAt: changeDateTimezone(response.data[i].createdAt, tzid),
+                createdAt: new Date(response.data[i].createdAt),
                 createdWhere: response.data[i].createdWhere,
               };
             statusArray.push(transformedStatus);
