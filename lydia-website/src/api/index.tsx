@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { generateID } from '../util/guid';
-import { changeDateTimezone, parseDateToISO } from '../util/time';
+import { changeDateTimezone, convertDateToUTC, parseDateToISO } from '../util/time';
 import { Status } from '../constants/Status';
 
 const ct = require('countries-and-timezones');
@@ -50,7 +50,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
         id: generateID(),
         text: text,
         author: author, 
-        createdAt: parseDateToISO(tzid).slice(0, 19).replace('T', ' '), 
+        createdAt: convertDateToUTC(new Date()).toISOString(),
         country: country,
     }).then((response) => {
         console.log(response);

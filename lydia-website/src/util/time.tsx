@@ -4,6 +4,11 @@ export function changeDateTimezone(date : Date, timeZone : string) : Date {
     );
 }
 
+export function convertDateToUTC(date : Date) : Date { 
+    return new Date(date.getUTCFullYear(), date.getUTCMonth(), 
+    date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
+}
+
 export function parseDateToISO(timeZone : string) : string {
     const dateNow = changeDateTimezone(new Date(), timeZone);
     const [month, day, year] = [dateNow.getMonth() + 1, dateNow.getDate(), dateNow.getFullYear()];
