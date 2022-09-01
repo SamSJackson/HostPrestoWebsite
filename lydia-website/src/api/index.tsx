@@ -26,6 +26,7 @@ export async function getStatuses() : Promise<Status[]> {
     const statusArray : Status[] = [];
     console.log("Getting status");
     await axios.get(url).then((response) => {
+        console.log(response);
         for (var i = 0; i < response.data.length; i++) {
             const transformedStatus: Status = {
                 _id: response.data[i].id,
@@ -62,6 +63,7 @@ export async function addStatus(text : string, author : string) : Promise<Status
         createdAt: parseDateToISO(tzid).slice(0, 19).replace('T', ' '), 
         country: country,
     }).then((response) => {
+        console.log(response);
         DEFAULT_STATUS._id = response.data._id;
         DEFAULT_STATUS.text = response.data.text;
         DEFAULT_STATUS.author = response.data.author;
@@ -81,6 +83,7 @@ export async function deleteStatus(statusId: number) {
     await axios.post(url, {
         statusId
     }).then((response) => {
+        console.log(response);
     }).catch((error) => {
         console.log(`Error: ${error}`);
     });
