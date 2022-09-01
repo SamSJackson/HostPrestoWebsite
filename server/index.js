@@ -3,6 +3,7 @@ const parser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
+const path = require("path");
 
 const db = mysql.createPool({
     host: "localhost",
@@ -20,6 +21,7 @@ const con = mysql.createConnection({
 app.use(cors());
 app.use(parser.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../lydia-website/build')));
 
 app.get('/api/', (request, response) => {
     console.log("Successfully called");
