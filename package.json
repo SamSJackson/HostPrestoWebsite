@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/SamSJackson/HostPrestoWebsite/issues"
   },
-  "homepage": "https://github.com/SamSJackson/HostPrestoWebsite#readme",
+  "homepage": "https://lydiabroadley.com:443",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",

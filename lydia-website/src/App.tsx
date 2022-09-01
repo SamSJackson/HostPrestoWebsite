@@ -43,10 +43,6 @@ const App : React.FC = () => {
     }
     appNode.style.backgroundColor = hslFormat(190, 100, lightness);
   };
-
-  function mouseListener(event : WheelEvent) { 
-    console.log(event.target as HTMLDivElement);
-  }
   
   useEffect(() => {
     const statusesPromise = getStatuses();
