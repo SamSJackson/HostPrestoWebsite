@@ -5,17 +5,19 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const path = require("path");
 
+const PORT = 3001;
+
 const db = mysql.createPool({
     host: "localhost",
-    user: "root", // statusdb
-    password: "password", // nD70wY928xFW
+    user: "statusdb", // statusdb
+    password: "nD70wY928xFW", // nD70wY928xFW
     database: 'statusdb',
 })
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "root", // statusdb
-    password: "password", // nD70wY928xFW
+    user: "statusdb", // statusdb
+    password: "nD70wY928xFW", // nD70wY928xFW
 })
 
 app.use(cors());
@@ -77,7 +79,7 @@ app.post('/api/statuses/delete', (request, response) => {
 })
 
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
     console.log("Running on port 3001");
     con.connect((error) => {
         if (error) throw error;
