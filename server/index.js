@@ -87,14 +87,11 @@ app.post('/api/statuses/delete', (request, response) => {
     response.send("Success");
 })
 
-
 const server = https.createServer(app);
-const host = server.address().address;
 
 server.listen(() => {
     con.connect((error) => {
         if (error) throw error;
         console.log("Connected");
     });
-    console.log(host);
 })
