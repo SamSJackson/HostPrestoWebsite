@@ -10,7 +10,7 @@ export function convertDateToUTC(date : Date) : Date {
 }
 
 export function parseDateToISO(timeZone : string) : string {
-    const dateNow = changeDateTimezone(new Date(), timeZone);
+    const dateNow = new Date();
     const [month, day, year] = [dateNow.getMonth() + 1, dateNow.getDate(), dateNow.getFullYear()];
     const [hour, minutes, seconds] = [dateNow.getHours(), dateNow.getMinutes(), dateNow.getSeconds()];
     const isoString = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":" + seconds;
