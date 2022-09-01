@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Timezone from './components/Timezone';
 import Updates from './components/Updates';
 import { Status } from './constants/Status';
-import { getStatuses, testAPI } from './api';
+import { getStatuses } from './api';
 import { hslFormat } from './util/colour';
 import StatusContext from './contexts/StatusContext';
 import TimeContext from './contexts/TimeContex';
@@ -45,7 +45,6 @@ const App : React.FC = () => {
   };
   
   useEffect(() => {
-    testAPI();
     const statusesPromise = getStatuses();
     statusesPromise.then((statusArray) => {
       setStatus([...statusArray]);

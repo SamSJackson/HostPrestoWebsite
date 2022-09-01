@@ -3,21 +3,9 @@ const parser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
-const https = require('https');
-const fs = require('fs');
 const path = require('path');
 
-
-// const BASE_DIR = "/var/www/lydiabroadley.com"
-// const key = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/privkey.pem");
-// const cert = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/fullchain.pem");
-
 const PORT = 3000;
-// const options = {
-//     key: key,
-//     cert: cert
-// };
-
 const db = mysql.createPool({
     host: "localhost",
     user: "statusdb",
@@ -47,6 +35,7 @@ app.get('/api/statuses', (request, response) => {
         if (error) {
             response.send(`error => ${error}`);
         }
+        console.log(result);
         response.send(result);
     })
 });
@@ -72,6 +61,7 @@ app.post('/api/statuses/add', (request, response) => {
             response.send({_id:0, text: "", author: "", createdAt: new Date(), createdWhere: ""});
             return;
         }
+        console.log(newStatus);
         response.send(newStatus);
     })
 })
