@@ -8,8 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const BASE_DIR = "/var/www/lydiabroadley.com"
-// Use fs and generate SSL certificates to get these values
+// const BASE_DIR = "/var/www/lydiabroadley.com"
 // const key = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/privkey.pem");
 // const cert = fs.readFileSync("../../../etc/letsencrypt/live/lydiabroadley.com/fullchain.pem");
 
@@ -21,15 +20,15 @@ const PORT = 3001;
 
 const db = mysql.createPool({
     host: "localhost",
-    user: "statusdb", // statusdb
-    password: "nD70wY928xFW", // nD70wY928xFW
+    user: "statusdb",
+    password: "nD70wY928xFW",
     database: 'statusdb',
 })
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "statusdb", // statusdb
-    password: "nD70wY928xFW", // nD70wY928xFW
+    user: "statusdb",
+    password: "nD70wY928xFW",
 })
 
 app.use(cors());
@@ -89,9 +88,9 @@ app.post('/api/statuses/delete', (request, response) => {
     response.send("Success");
 })
 
-app.listen(PORT, () => {
-    con.connect((error) => {
-        if (error) throw error;
-        console.log("Connected");
-    });
-})
+// app.listen(PORT, () => {
+//     con.connect((error) => {
+//         if (error) throw error;
+//         console.log("Connected");
+//     });
+// })
