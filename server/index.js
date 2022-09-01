@@ -89,12 +89,12 @@ app.post('/api/statuses/delete', (request, response) => {
 
 
 const server = https.createServer(app);
+const host = server.address().address;
 
 server.listen(() => {
-    console.log("Listening on host:", host);
-    console.log("Listening on port:", port);
     con.connect((error) => {
         if (error) throw error;
         console.log("Connected");
     });
+    console.log(host);
 })
