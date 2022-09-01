@@ -16,6 +16,7 @@ const UpdateOption: React.FC<Props> = ({
     status,
     onDelete,
 }) => {
+    console.log(`Update option: ${status.createdAt}`);
     const createdAt = formatTime(status.createdAt);
 
     const handleDelete = async () => {

@@ -24,6 +24,8 @@ export async function getStatuses() : Promise<Status[]> {
                 createdAt: new Date(response.data[i].createdAt),
                 createdWhere: response.data[i].createdWhere,
               };
+              console.log(`Response received: ${response.data[i].createdAt}`);
+              console.log(`Transformed: ${transformedStatus.createdAt}`);
             statusArray.push(transformedStatus);
         };
     }).catch((error) => {
