@@ -2,7 +2,7 @@
   "name": "lydia-website",
   "version": "0.1.0",
   "homepage": ".",
-  "proxy": "https://lydiabroadley.com:443",
+  "proxy": "https://lydiabroadley.com:3001",
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.10.2",
