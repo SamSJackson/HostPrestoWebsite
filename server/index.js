@@ -40,7 +40,7 @@ app.get('/api/', (request, response) => {
     response.send("Nice job");
 });
 
-app.get('/statuses', (request, response) => {
+app.get('/api/statuses', (request, response) => {
     const sqlQuery = "SELECT * FROM basic_status ORDER BY createdAt DESC";
     console.log("Getting statuses");
     db.query(sqlQuery, (error, result) => {
@@ -94,8 +94,7 @@ app.post('/api/statuses/delete', (request, response) => {
 
 const server = https.createServer(options, app);
 
-server.listen("https://193.105.61.6/api/", () => {
-    console.log("Running on port", PORT);
+server.listen(() => {
     con.connect((error) => {
         if (error) throw error;
         console.log("Connected");
