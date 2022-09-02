@@ -5,8 +5,8 @@ import { Status } from '../constants/Status';
 
 const ct = require('countries-and-timezones');
 
-// const BASE_URL = "https://lydiabroadley.com/api";
-const BASE_URL = "http://localhost:3001/api"
+const BASE_URL = "https://lydiabroadley.com/api";
+// const BASE_URL = "http://localhost:3001/api"
 
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;

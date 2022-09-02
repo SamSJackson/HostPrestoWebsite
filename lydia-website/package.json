@@ -2,7 +2,6 @@
   "name": "lydia-website",
   "version": "0.1.0",
   "homepage": ".",
-  "proxy": "http://localhost:3001", 
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.10.2",
