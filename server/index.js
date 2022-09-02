@@ -5,18 +5,18 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = 3001; // PORT = 3000 on deployable
 const db = mysql.createPool({
     host: "localhost",
-    user: "statusdb",
-    password: "nD70wY928xFW",
+    user: "root", // statusdb
+    password: "password", // nD70wY928xFW
     database: 'statusdb',
 })
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "statusdb",
-    password: "nD70wY928xFW",
+    user: "root", // statusdb
+    password: "password", // nD70wY928xFW
 })
 
 app.use(cors());
@@ -37,6 +37,34 @@ app.get('/api/statuses', (request, response) => {
         response.send(result);
     })
 });
+
+app.post('/api/login/check', (request, response) => {
+    const id = request.body.stringId;
+
+    const sqlQuery = "SELECT * FROM auth WHERE auth_id = ?";
+    db.query(sqlQuery, [id], (error, result) => {
+        if (error || result.length != 1) {
+            response.send(false);
+            return false;
+        }
+        response.send(true);
+    })
+})
+
+app.post('/api/login', (request, response) => {
+    const username = request.body.username;
+    const password = request.body.password;
+
+    const sqlQuery = "SELECT * FROM auth WHERE name = ? AND password = ?";
+    db.query(sqlQuery, [username, password], (error, result) => {
+        if (error || result.length != 1) {
+            response.send("Unsuccessful");
+            return;
+        }
+        const auth_id = result[0].auth_id;
+        response.send(auth_id);
+    })
+})
 
 app.post('/api/statuses/add', (request, response) => {
     const _id = request.body.id;
@@ -75,6 +103,6 @@ app.post('/api/statuses/delete', (request, response) => {
     response.send("Success");
 })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Listening on port", PORT)
 });

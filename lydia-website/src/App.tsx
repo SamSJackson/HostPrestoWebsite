@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
+import Login from './components/Login';
 import Timezone from './components/Timezone';
 import Updates from './components/Updates';
 import { Status } from './constants/Status';
 import { getStatuses } from './api';
 import { hslFormat } from './util/colour';
+import { getAuthId, getAuthName } from './util/auth';
 import StatusContext from './contexts/StatusContext';
 import TimeContext from './contexts/TimeContex';
 
 import './App.scss';
 
+type AuthState = {
+  isLoading: boolean;
+  userId: string;
+  authentic: boolean;
+}
+
 const londonTimezone = 'Europe/London';
 const vancouverTimezone = 'America/Vancouver';
 
 const App : React.FC = () => {
+  const [authState, setAuthState] = useState<AuthState>({isLoading: true, userId : getAuthName(), authentic: false});
   const [status, setStatus] = useState<Status[]>([]);
   const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const appNode = document.getElementById("app-container-primary");
@@ -53,6 +62,22 @@ const App : React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    getAuthId().then((response) => {
+      console.log(response);
+      if (response !== "") {
+        setAuthState({isLoading: false, userId: response, authentic: true});
+      } else {
+        setAuthState({isLoading: false, userId: "", authentic: false});
+      }
+    })
+    console.log(authState);
+  }, []);
+
+  const handleLogin = (stringId : string) => {
+    window.localStorage.setItem("auth_id", stringId);
+    setAuthState({isLoading: false, userId : stringId, authentic: true});
+  }
 
   const handleAddStatus = (newStatus: Status) => {
     if (status.indexOf(newStatus) > -1) {
@@ -71,23 +96,34 @@ const App : React.FC = () => {
         <div id="app-container-primary" className="app-container">
           <div id="stars" className="star-container">
             <div className="background-container">
-              <div className="flex-grid">
-                <div className="col">
-                  <div className="timezone-container">
-                    <div className="london-timezone">
-                      <h2>London Timezone</h2>
-                      <Timezone timeZone={londonTimezone} />
-                    </div>
-                    <div className="vancouver-timezone">
-                      <h2>Vancouver Timezone</h2>
-                      <Timezone timeZone={vancouverTimezone} />
+              {!authState.authentic ? 
+                (
+                  <>
+                    {authState.userId === "" 
+                    ? (<Login onSuccessfulLogin={handleLogin}/>) 
+                    : (<>{/*Make spinner*/}</>)
+                    }
+                  </>
+                ) : (
+                <div className="flex-grid">
+                  <div className="col">
+                    <div className="timezone-container">
+                      <div className="london-timezone">
+                        <h2>London Timezone</h2>
+                        <Timezone timeZone={londonTimezone} />
+                      </div>
+                      <div className="vancouver-timezone">
+                        <h2>Vancouver Timezone</h2>
+                        <Timezone timeZone={vancouverTimezone} />
+                      </div>
                     </div>
                   </div>
+                  <div className="col">
+                    <Updates onSubmit={handleAddStatus} onRemove={handleRemoveStatus}/>
+                  </div>
                 </div>
-                <div className="col">
-                  <Updates onSubmit={handleAddStatus} onRemove={handleRemoveStatus}/>
-                </div>
-              </div>
+              )}
+              
             </div>
           </div>
         </div>
