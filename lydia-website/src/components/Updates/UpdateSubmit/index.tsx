@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import UserContext from '../../../contexts/UserContext';
 
 import './main.scss';
 
@@ -9,21 +10,17 @@ type Props = {
 const UpdateSubmit: React.FC<Props> = ({
     onSubmit
 }) => {
-    const [name, setName] = useState("");
+    const name = useContext(UserContext).username;
     const [text, setText] = useState("");
     const [disabled, setDisabled] = useState(false);
     
     useEffect(() => {
-        if (text !== "" && name !== "") {
+        if (text !== "") {
             setDisabled(false);
         } else {
             setDisabled(true);
         }
-    }, [name, text]);
-    
-    const handleNameChange = (event : React.FormEvent<HTMLInputElement>) => {
-        setName((event.target as HTMLInputElement).value);
-    }
+    }, [text]);
     
     const handleTextChange = (event : React.FormEvent<HTMLTextAreaElement>) => {
         setText((event.target as HTMLTextAreaElement).value);
@@ -36,16 +33,13 @@ const UpdateSubmit: React.FC<Props> = ({
         const formElement = document.getElementById("update-status-submit");
         if (formElement == null) { return; }
         (formElement as HTMLFormElement).reset();
-        setText(""); setName("");
+        setText("");
     }
 
     return (
         <div className="updates-footer">
             <form id="update-status-submit" className="updates-footer-form" onSubmit={handleSubmit}>
                 <div className="updates-footer-flex">
-                    <div>
-                        <input type="text" id="author" name="author" placeholder="Name" onChange={handleNameChange}/>
-                    </div>
                     <div className="updates-textarea">
                         <textarea id="textarea" className="textarea" placeholder="New status" onChange={handleTextChange}/>
                     </div>

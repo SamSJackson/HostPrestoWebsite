@@ -44,10 +44,12 @@ app.post('/api/login/check', (request, response) => {
     const sqlQuery = "SELECT * FROM auth WHERE auth_id = ?";
     db.query(sqlQuery, [id], (error, result) => {
         if (error || result.length != 1) {
-            response.send(false);
-            return false;
+            response.send({authentic: false, auth_id : "", username: ""});
+            return;
         }
-        response.send(true);
+        const auth_id = result[0].auth_id;
+        const username = result[0].name;
+        response.send({authentic: true, auth_id : auth_id, username: username});
     })
 })
 
@@ -58,11 +60,12 @@ app.post('/api/login', (request, response) => {
     const sqlQuery = "SELECT * FROM auth WHERE name = ? AND password = ?";
     db.query(sqlQuery, [username, password], (error, result) => {
         if (error || result.length != 1) {
-            response.send("Unsuccessful");
+            response.send({auth_id : "", username: ""});
             return;
         }
         const auth_id = result[0].auth_id;
-        response.send(auth_id);
+        const username = result[0].name;
+        response.send({auth_id : auth_id, username: username});
     })
 })
 

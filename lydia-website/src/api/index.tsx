@@ -2,6 +2,13 @@ import axios from 'axios';
 
 import { generateID } from '../util/guid';
 import { Status } from '../constants/Status';
+import { UserInfo } from '../util/auth';
+
+type UserAuthenticType = {
+    authentic: boolean;
+    auth_id: string;
+    username: string;
+}
 
 const ct = require('countries-and-timezones');
 
@@ -11,19 +18,26 @@ const BASE_URL = "http://localhost:3001/api"
 const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const country = ct.getCountriesForTimezone(tzid)[0].name;
 
-export async function login_confirm(stringId : string) : Promise<boolean> {
+export async function login_confirm(stringId : string) : Promise<UserAuthenticType> {
     const url = BASE_URL + '/login/check';
-    return await axios.post(url, {stringId}).then(response => response.data);
+    return await axios.post(url, {stringId}).then(response => ({
+        authentic: response.data.authentic,
+        auth_id: response.data.auth_id,
+        username: response.data.username,
+    }));
 }
 
-export async function login(username : string, password : string) : Promise<string> {
+export async function login(username : string, password : string) : Promise<UserInfo> {
     const url = BASE_URL + '/login';
-    return await axios.post(url, {username, password}).then(response => response.data)
+    return await axios.post(url, {username, password}).then(response => ({
+        auth_id: response.data.auth_id,
+        username: response.data.username,
+    }))
     .catch((error) => {
         console.log(`Error: ${error}`);
         return new Promise((resolve, reject) => {
-            resolve("");
-            reject("");
+            resolve({auth_id: "", username: ""});
+            reject({auth_id: "", username: ""});
         })
     });
 }
