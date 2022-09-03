@@ -29,8 +29,14 @@ $stars-img: url('static/images/stars.png');
           height: 100%;
           display: flex;
           
-          .col {
+          .timezone-col {
             height: 60%;
+            flex: 1;
+            margin: auto;
+          }
+
+          .updates-col {
+            height: 80%;
             flex: 1;
             margin: auto;
           }
@@ -93,10 +99,19 @@ $stars-img: url('static/images/stars.png');
         .flex-grid {
           display: block;
     
-          .col {
-            height: 50%;
+          .timezone-col {
+            top: 0;
+            height: 30%;
             flex: 1;
             margin: auto;
+            .timezone-container {
+              padding: 30px;
+            }
+          }
+
+          .updates-col {
+            height: 70%;
+            
           }
         }
       }

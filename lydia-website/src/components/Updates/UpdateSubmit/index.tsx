@@ -41,12 +41,12 @@ const UpdateSubmit: React.FC<Props> = ({
 
     return (
         <div className="updates-footer">
-            <form id="update-status-submit" onSubmit={handleSubmit}>
+            <form id="update-status-submit" className="updates-footer-form" onSubmit={handleSubmit}>
                 <div className="updates-footer-flex">
                     <div>
                         <input type="text" id="author" name="author" placeholder="Name" onChange={handleNameChange}/>
                     </div>
-                    <div>
+                    <div className="updates-textarea">
                         <textarea id="textarea" className="textarea" placeholder="New status" onChange={handleTextChange}/>
                     </div>
                 </div>

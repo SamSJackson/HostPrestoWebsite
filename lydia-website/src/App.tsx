@@ -64,14 +64,12 @@ const App : React.FC = () => {
 
   useEffect(() => {
     getAuthId().then((response) => {
-      console.log(response);
       if (response !== "") {
         setAuthState({isLoading: false, userId: response, authentic: true});
       } else {
         setAuthState({isLoading: false, userId: "", authentic: false});
       }
     })
-    console.log(authState);
   }, []);
 
   const handleLogin = (stringId : string) => {
@@ -106,7 +104,7 @@ const App : React.FC = () => {
                   </>
                 ) : (
                 <div className="flex-grid">
-                  <div className="col">
+                  <div className="timezone-col">
                     <div className="timezone-container">
                       <div className="london-timezone">
                         <h2>London Timezone</h2>
@@ -118,7 +116,7 @@ const App : React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="updates-col">
                     <Updates onSubmit={handleAddStatus} onRemove={handleRemoveStatus}/>
                   </div>
                 </div>
