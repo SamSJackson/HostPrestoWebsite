@@ -26,7 +26,6 @@ const UpdateSubmit: React.FC<Props> = ({
         setText((event.target as HTMLTextAreaElement).value);
     }
 
-
     const handleSubmit = async (event : React.SyntheticEvent) => {
         event.preventDefault();
         await onSubmit(name, text);
