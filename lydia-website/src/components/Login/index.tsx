@@ -9,7 +9,7 @@ type InputValues = {
 }
 
 type Props = {
-    onSuccessfulLogin : (stringId : string) => void;
+    onSuccessfulLogin : (stringId : string, username : string) => void;
 };
 
 const Login : React.FC<Props> = ({
@@ -49,8 +49,8 @@ const Login : React.FC<Props> = ({
         const password = inputValues.password;
         if (username === "" && password === "") { return; }
         login(username, password).then((response) => {
-            if (response != "Unsuccessful") {
-                onSuccessfulLogin(response);
+            if (response.auth_id != "") {
+                onSuccessfulLogin(response.auth_id, response.username);
             } else {
                 setLoginSuccess(false);
             }
