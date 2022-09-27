@@ -9,14 +9,14 @@ const PORT = 3000; // PORT = 3000 on deployable
 const db = mysql.createPool({
     host: "localhost",
     user: "statusdb", // statusdb
-    password: "nD70wY928xFW", // nD70wY928xFW
+    password: "blank", 
     database: 'statusdb',
 })
 
 const con = mysql.createConnection({
     host: "localhost",
     user: "statusdb", // statusdb
-    password: "nD70wY928xFW", // nD70wY928xFW
+    password: "blank", 
 })
 
 app.use(cors());
