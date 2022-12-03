@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import Snowfall from 'react-snowfall';
 import reportWebVitals from './reportWebVitals';
 
 import App from './App';

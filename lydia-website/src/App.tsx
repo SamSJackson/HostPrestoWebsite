@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Snowfall from 'react-snowfall';
 
 import Login from './components/Login';
 import Timezone from './components/Timezone';
@@ -96,6 +97,9 @@ const App : React.FC = () => {
     <TimeContext.Provider value={tzid} >
       <StatusContext.Provider value={status}>
         <UserContext.Provider value={userInfo}>
+          <div className="snow-fall">
+          <Snowfall snowflakeCount={700}/>
+          </div>
           <div id="app-container-primary" className="app-container">
             <div id="stars" className="star-container">
               <div className="background-container">
